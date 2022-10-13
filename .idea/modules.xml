@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_service/example/melos_example.iml" filepath="$PROJECT_DIR$/packages/flutter_login_service/example/melos_example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_interface/melos_flutter_login_interface.iml" filepath="$PROJECT_DIR$/packages/flutter_login_interface/melos_flutter_login_interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_service/melos_flutter_login_service.iml" filepath="$PROJECT_DIR$/packages/flutter_login_service/melos_flutter_login_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_shared_preferences/melos_flutter_login_shared_preferences.iml" filepath="$PROJECT_DIR$/packages/flutter_login_shared_preferences/melos_flutter_login_shared_preferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_flutter_login_service.iml" filepath="$PROJECT_DIR$/melos_flutter_login_service.iml" />
+    </modules>
+  </component>
+</project>
