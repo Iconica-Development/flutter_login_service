@@ -1,10 +1,19 @@
 import 'package:flutter_login_interface/flutter_login_interface.dart';
 
-class LoginDefaultDataProvider extends LoginInterface {
+class LoginDefaultDataProvider extends LoginInterface<String> {
   LoginDefaultDataProvider();
 
   @override
-  T add<T extends num>(T a, T b) {
-    return (a + b) as T;
+  Future<LoginResponse<String>> loginWithEmailAndPassword(
+      EmailPasswordLogin login) async {
+    return LoginResponse(
+      loginSuccessful: true,
+      userObject: 'test',
+    );
+  }
+
+  @override
+  Future<bool> requestPasswordReset(String email) async {
+    return true;
   }
 }

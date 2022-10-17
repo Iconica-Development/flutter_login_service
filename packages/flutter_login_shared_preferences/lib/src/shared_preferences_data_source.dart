@@ -1,29 +1,38 @@
+import 'dart:convert';
+
+import 'package:flutter_login_shared_preferences/src/login_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login_interface/flutter_login_interface.dart';
 
-class LoginSharedPreferencesDataProvider extends LoginInterface {
+class LoginSharedPreferencesDataProvider
+    extends LoginInterface<BasicLoginModel> {
   LoginSharedPreferencesDataProvider();
 
   SharedPreferences? _instance;
 
-  Future<SharedPreferences>? _prefGetter;
+  static const _loginKeyPrefix = '_login_';
 
-  SharedPreferences? get _prefs {
-    if (_instance == null) {
-      (_prefGetter ??= SharedPreferences.getInstance())
-          .then((value) => _instance = value);
+  Future<SharedPreferences> get _prefs async =>
+      _instance ??= await SharedPreferences.getInstance();
+
+  @override
+  Future<LoginResponse<BasicLoginModel>> loginWithEmailAndPassword(
+      EmailPasswordLogin login) async {
+    var prefs = await _prefs;
+    var value = prefs.getString('$_loginKeyPrefix${login.email}');
+    if (value != null) {
+      var raw = jsonDecode(value);
+      var model = BasicLoginModel.fromJson(raw);
+      if (model.passwordMatches(login.password)) {
+        return LoginResponse(loginSuccessful: true, userObject: model);
+      }
     }
-    return _instance;
+    return LoginResponse<BasicLoginModel>(
+        loginSuccessful: false, userObject: null);
   }
 
   @override
-  T add<T extends num>(T a, T b) {
-    var cached = _prefs?.getDouble('${a.toDouble()}+${b.toDouble()}');
-    if (cached != null) {
-      return cached as T;
-    }
-    var result = a + b;
-    _prefs?.setDouble('${a.toDouble()}+${b.toDouble()}', result.toDouble());
-    return result as T;
+  Future<bool> requestPasswordReset(String email) {
+    throw UnimplementedError();
   }
 }

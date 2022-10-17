@@ -1,7 +1,7 @@
 import 'package:flutter_data_interface/flutter_data_interface.dart';
-import 'package:flutter_login_interface/src/login_default.dart';
+import 'package:flutter_login_interface/flutter_login_interface.dart';
 
-abstract class LoginInterface extends DataInterface {
+abstract class LoginInterface<T> extends DataInterface {
   LoginInterface() : super(token: _token);
 
   static final Object _token = Object();
@@ -15,6 +15,7 @@ abstract class LoginInterface extends DataInterface {
     _instance = instance;
   }
 
-  // define your interface methods here
-  T add<T extends num>(T a, T b);
+  Future<LoginResponse<T>> loginWithEmailAndPassword(EmailPasswordLogin login);
+
+  Future<bool> requestPasswordReset(String email);
 }
