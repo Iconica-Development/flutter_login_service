@@ -1,7 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_example/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_firebase/flutter_login_firebase.dart';
 import 'package:flutter_login_service/flutter_login_service.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -31,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _service = LoginService.standard();
+  final _service = LoginService.forDatasource(dataSource: FirebaseLogin(Firebase.app()));
   final _formKey = GlobalKey<FormState>();
   var email = '';
   var password = '';

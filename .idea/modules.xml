@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_service/example/melos_example.iml" filepath="$PROJECT_DIR$/packages/flutter_login_service/example/melos_example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_firebase/example/melos_firebase_example.iml" filepath="$PROJECT_DIR$/packages/flutter_login_firebase/example/melos_firebase_example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_firebase/melos_flutter_login_firebase.iml" filepath="$PROJECT_DIR$/packages/flutter_login_firebase/melos_flutter_login_firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_interface/melos_flutter_login_interface.iml" filepath="$PROJECT_DIR$/packages/flutter_login_interface/melos_flutter_login_interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_service/melos_flutter_login_service.iml" filepath="$PROJECT_DIR$/packages/flutter_login_service/melos_flutter_login_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/flutter_login_shared_preferences/melos_flutter_login_shared_preferences.iml" filepath="$PROJECT_DIR$/packages/flutter_login_shared_preferences/melos_flutter_login_shared_preferences.iml" />

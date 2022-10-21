@@ -1,12 +1,39 @@
 import 'package:flutter_login_interface/flutter_login_interface.dart';
 
 /// A Calculator.
-class LoginService {
-  LoginService([LoginInterface? source])
-      : dataSource = source ?? LoginInterface.instance;
+class LoginService<T> {
+  static LoginService<T> forDatasource<T>({
+    required LoginInterface<T> dataSource,
+  }) {
+    return LoginService<T>._(dataSource);
+  }
 
-  LoginInterface dataSource;
+  static LoginService<String> standard() {
+    return LoginService._(LoginDefaultDataProvider());
+  }
 
-  /// Returns [value] plus 1.
-  int addOne(int value) => dataSource.add<int>(value, 1);
+  LoginService._(LoginInterface<T> data) : dataSource = data;
+
+  LoginInterface<T> dataSource;
+
+  Future<T?> loginWithEmailAndPassword(String email, String password) async {
+    var result = await dataSource.loginWithEmailAndPassword(
+        EmailPasswordLogin(email: email, password: password));
+    if (result.loginSuccessful) {
+      return result.userObject;
+    }
+    return null;
+  }
+
+  Future<bool> requestChangePassword(String email) {
+    return dataSource.requestPasswordReset(email);
+  }
+
+  Future<T?> getLoggedInUser() {
+    return dataSource.getLoggedInUser();
+  }
+
+  Future<bool> logout() {
+    return dataSource.logout();
+  }
 }
