@@ -24,6 +24,7 @@ class LoginSharedPreferencesDataProvider
       var raw = jsonDecode(value);
       var model = BasicLoginModel.fromJson(raw);
       if (model.passwordMatches(login.password)) {
+        prefs.setString('${_loginKeyPrefix}current', model.username);
         return LoginResponse(loginSuccessful: true, userObject: model);
       }
     }
@@ -32,7 +33,27 @@ class LoginSharedPreferencesDataProvider
   }
 
   @override
-  Future<bool> requestPasswordReset(String email) {
+  Future<bool> requestPasswordReset(String email) async {
+    return false;
+  }
+
+  @override
+  Future<BasicLoginModel?> getLoggedInUser() async {
+    var key = '${_loginKeyPrefix}current';
+    var prefs = await _prefs;
+    if (prefs.containsKey(key)) {
+      var username = prefs.get(key);
+      var userKey = '$_loginKeyPrefix$username';
+      var raw = jsonDecode(prefs.getString(userKey)!);
+      return BasicLoginModel.fromJson(raw);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<bool> logout() {
+    // TODO: implement logout
     throw UnimplementedError();
   }
 }

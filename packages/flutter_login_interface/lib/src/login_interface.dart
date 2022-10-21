@@ -18,4 +18,8 @@ abstract class LoginInterface<T> extends DataInterface {
   Future<LoginResponse<T>> loginWithEmailAndPassword(EmailPasswordLogin login);
 
   Future<bool> requestPasswordReset(String email);
+
+  Future<bool> logout();
+
+  Future<T?> getLoggedInUser();
 }

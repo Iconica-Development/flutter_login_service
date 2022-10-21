@@ -219,13 +219,11 @@ packages:
     source: path
     version: "0.0.1"
   flutter_login_interface:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      path: "packages/flutter_login_interface"
-      ref: HEAD
-      resolved-ref: c5c69e2bc06c616e236e5b31941abfa18c6d4ca3
-      url: "https://github.com/Iconica-Development/flutter_login_service.git"
-    source: git
+      path: "../../flutter_login_interface"
+      relative: true
+    source: path
     version: "0.1.0"
   flutter_login_service:
     dependency: "direct main"

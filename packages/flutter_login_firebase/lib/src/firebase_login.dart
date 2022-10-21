@@ -35,4 +35,21 @@ class FirebaseLogin extends LoginInterface<User> {
       return false;
     }
   }
+
+  @override
+  Future<User?> getLoggedInUser() {
+    var auth = FirebaseAuth.instanceFor(app: app);
+    return auth.authStateChanges().first;
+  }
+
+  @override
+  Future<bool> logout() async {
+    var auth = FirebaseAuth.instanceFor(app: app);
+    try {
+      await auth.signOut();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }

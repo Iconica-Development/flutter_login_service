@@ -3,9 +3,12 @@ import 'package:flutter_login_interface/flutter_login_interface.dart';
 class LoginDefaultDataProvider extends LoginInterface<String> {
   LoginDefaultDataProvider();
 
+  bool loggedIn = false;
+
   @override
   Future<LoginResponse<String>> loginWithEmailAndPassword(
       EmailPasswordLogin login) async {
+    loggedIn = true;
     return LoginResponse(
       loginSuccessful: true,
       userObject: 'test',
@@ -14,6 +17,20 @@ class LoginDefaultDataProvider extends LoginInterface<String> {
 
   @override
   Future<bool> requestPasswordReset(String email) async {
+    return true;
+  }
+
+  @override
+  Future<String?> getLoggedInUser() async {
+    if (loggedIn) {
+      return 'test';
+    }
+    return null;
+  }
+
+  @override
+  Future<bool> logout() async {
+    loggedIn = false;
     return true;
   }
 }

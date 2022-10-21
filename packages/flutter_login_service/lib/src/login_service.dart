@@ -25,7 +25,15 @@ class LoginService<T> {
     return null;
   }
 
-  Future<bool> requestChangePassword(String email) async {
+  Future<bool> requestChangePassword(String email) {
     return dataSource.requestPasswordReset(email);
+  }
+
+  Future<T?> getLoggedInUser() {
+    return dataSource.getLoggedInUser();
+  }
+
+  Future<bool> logout() {
+    return dataSource.logout();
   }
 }
