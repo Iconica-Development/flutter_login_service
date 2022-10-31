@@ -36,7 +36,7 @@ dependencies:
     path: ../../flutter_login_service
   flutter_login_firebase:
     path: ../
-  firebase_core: ^1.24.0
+  firebase_core: ^2.1.1
 
 dev_dependencies:
   flutter_test:
