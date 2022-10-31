@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Iconica
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 import 'package:flutter_login_interface/flutter_login_interface.dart';
 
 class LoginDefaultDataProvider extends LoginInterface<String> {

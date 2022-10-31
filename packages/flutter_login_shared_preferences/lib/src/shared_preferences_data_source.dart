@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Iconica
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 import 'dart:convert';
 
 import 'package:flutter_login_shared_preferences/src/login_model.dart';
