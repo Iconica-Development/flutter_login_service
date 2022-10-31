@@ -1,15 +1,15 @@
 name: flutter_login_firebase
 description: A new Flutter package project.
-version: 0.0.1
-publish_to: 'none'
+version: 0.1.0
+publish_to: "none"
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: ">=2.18.2 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
-  firebase_auth: ^3.11.2
-  firebase_core: ^1.24.0
+  firebase_auth: ^4.1.0
+  firebase_core: ^2.1.1
   flutter:
     sdk: flutter
   flutter_login_interface:
