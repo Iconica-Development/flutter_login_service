@@ -11,7 +11,8 @@ class LoginDefaultDataProvider extends LoginInterface<String> {
 
   @override
   Future<LoginResponse<String>> loginWithEmailAndPassword(
-      EmailPasswordLogin login) async {
+      EmailPasswordLogin login,
+      {Function(dynamic resolver)? onMFA}) async {
     loggedIn = true;
     return LoginResponse(
       loginSuccessful: true,

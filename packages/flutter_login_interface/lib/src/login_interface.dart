@@ -19,7 +19,8 @@ abstract class LoginInterface<T> extends DataInterface {
     _instance = instance;
   }
 
-  Future<LoginResponse<T>> loginWithEmailAndPassword(EmailPasswordLogin login);
+  Future<LoginResponse<T>> loginWithEmailAndPassword(EmailPasswordLogin login,
+      {Function(dynamic resolver)? onMFA});
 
   Future<bool> requestPasswordReset(String email);
 
