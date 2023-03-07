@@ -20,9 +20,11 @@ class LoginService<T> {
 
   LoginInterface<T> dataSource;
 
-  Future<T?> loginWithEmailAndPassword(String email, String password) async {
+  Future<T?> loginWithEmailAndPassword(String email, String password,
+      {Function(dynamic resolver)? onMFA}) async {
     var result = await dataSource.loginWithEmailAndPassword(
-        EmailPasswordLogin(email: email, password: password));
+      EmailPasswordLogin(email: email, password: password),
+    );
     if (result.loginSuccessful) {
       return result.userObject;
     }

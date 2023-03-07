@@ -5,7 +5,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_example/firebase_options.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_firebase/flutter_login_firebase.dart';
+import 'package:flutter_login_firebase_mfa/flutter_login_firebase_mfa.dart';
 import 'package:flutter_login_service/flutter_login_service.dart';
 
 void main() async {
@@ -39,7 +39,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _service = LoginService.forDatasource(dataSource: FirebaseLogin(Firebase.app()));
+  final _service =
+      LoginService.forDatasource(dataSource: FirebaseMFALogin(Firebase.app()));
   final _formKey = GlobalKey<FormState>();
   var email = '';
   var password = '';
@@ -48,7 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
     var form = _formKey.currentState!;
     if (form.validate()) {
       form.save();
-      await _service.loginWithEmailAndPassword(email, password);
+      var res = await _service.loginWithEmailAndPassword(
+        email,
+        password,
+        onMFA: (e) {},
+      );
     }
   }
 
@@ -74,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Text(
                 'Login',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               TextFormField(
                 onSaved: (val) {
@@ -88,13 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextButton(
                 onPressed: _forgotPassword,
-                child: Text(
+                child: const Text(
                   'request forgot password!',
                 ),
               ),
               ElevatedButton(
                 onPressed: _login,
-                child: Text('login'),
+                child: const Text('login'),
               ),
             ],
           ),

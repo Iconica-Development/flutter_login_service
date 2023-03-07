@@ -21,7 +21,8 @@ class LoginSharedPreferencesDataProvider
 
   @override
   Future<LoginResponse<BasicLoginModel>> loginWithEmailAndPassword(
-      EmailPasswordLogin login) async {
+      EmailPasswordLogin login,
+      {Function(dynamic resolver)? onMFA}) async {
     var prefs = await _prefs;
     var value = prefs.getString('$_loginKeyPrefix${login.email}');
     if (value != null) {

@@ -34,8 +34,8 @@ dependencies:
 
   flutter_login_service:
     path: ../../flutter_login_service
-  flutter_login_firebase:
-    path: ../
+  flutter_login_firebase_mfa:
+    path: ../../flutter_login_firebase_mfa
   firebase_core: ^2.1.1
 
 dev_dependencies:

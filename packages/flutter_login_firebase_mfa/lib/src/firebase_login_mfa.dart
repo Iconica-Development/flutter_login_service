@@ -1,15 +1,16 @@
-// SPDX-FileCopyrightText: 2022 Iconica
+// SPDX-FileCopyrightText: 2023 Iconica
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_login_interface/flutter_login_interface.dart';
 
-class FirebaseLogin extends LoginInterface<User> {
+class FirebaseMFALogin extends LoginInterface<User> {
   final FirebaseApp app;
 
-  FirebaseLogin(this.app);
+  FirebaseMFALogin(this.app);
 
   @override
   Future<LoginResponse<User>> loginWithEmailAndPassword(
@@ -25,6 +26,10 @@ class FirebaseLogin extends LoginInterface<User> {
         loginSuccessful: credential.user != null,
         userObject: credential.user,
       );
+    } on FirebaseAuthMultiFactorException catch (e) {
+      debugPrint("MFA required implement with [onMFA]");
+      onMFA?.call(e);
+      return LoginResponse(loginSuccessful: false, userObject: null);
     } on FirebaseAuthException catch (_) {
       return LoginResponse(loginSuccessful: false, userObject: null);
     }
