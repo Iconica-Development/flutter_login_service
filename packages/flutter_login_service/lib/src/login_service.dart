@@ -24,6 +24,7 @@ class LoginService<T> {
       {Function(dynamic resolver)? onMFA}) async {
     var result = await dataSource.loginWithEmailAndPassword(
       EmailPasswordLogin(email: email, password: password),
+      onMFA: onMFA,
     );
     if (result.loginSuccessful) {
       return result.userObject;
