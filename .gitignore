@@ -1,0 +1,10 @@
+.vscode
+.idea
+.dart_tool
+melos_flutter_login_service.iml
+
+.metadata
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+pubspec_overrides.yaml

@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '936056564897',
     projectId: 'ico-firebase-login-example',
     storageBucket: 'ico-firebase-login-example.appspot.com',
-    iosClientId: '936056564897-aummlidpi9q89ch66qcpck11phn69i88.apps.googleusercontent.com',
+    iosClientId:
+        '936056564897-aummlidpi9q89ch66qcpck11phn69i88.apps.googleusercontent.com',
     iosBundleId: 'com.example.example',
   );
 
@@ -80,7 +81,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '936056564897',
     projectId: 'ico-firebase-login-example',
     storageBucket: 'ico-firebase-login-example.appspot.com',
-    iosClientId: '936056564897-aummlidpi9q89ch66qcpck11phn69i88.apps.googleusercontent.com',
+    iosClientId:
+        '936056564897-aummlidpi9q89ch66qcpck11phn69i88.apps.googleusercontent.com',
     iosBundleId: 'com.example.example',
   );
 }
