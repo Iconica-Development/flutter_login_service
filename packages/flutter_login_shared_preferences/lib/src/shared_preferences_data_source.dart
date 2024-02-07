@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
+import 'package:flutter_login_interface/flutter_login_interface.dart';
 import 'package:flutter_login_shared_preferences/src/login_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_login_interface/flutter_login_interface.dart';
 
 class LoginSharedPreferencesDataProvider
     extends LoginInterface<BasicLoginModel> {
@@ -21,26 +21,28 @@ class LoginSharedPreferencesDataProvider
 
   @override
   Future<LoginResponse<BasicLoginModel>> loginWithEmailAndPassword(
-      EmailPasswordLogin login,
-      {Function(dynamic resolver)? onMFA}) async {
+    EmailPasswordLogin login, {
+    // ignore: avoid_annotating_with_dynamic
+    Function(dynamic resolver)? onMFA,
+  }) async {
     var prefs = await _prefs;
     var value = prefs.getString('$_loginKeyPrefix${login.email}');
     if (value != null) {
       var raw = jsonDecode(value);
       var model = BasicLoginModel.fromJson(raw);
       if (model.passwordMatches(login.password)) {
-        prefs.setString('${_loginKeyPrefix}current', model.username);
+        await prefs.setString('${_loginKeyPrefix}current', model.username);
         return LoginResponse(loginSuccessful: true, userObject: model);
       }
     }
     return LoginResponse<BasicLoginModel>(
-        loginSuccessful: false, userObject: null);
+      loginSuccessful: false,
+      userObject: null,
+    );
   }
 
   @override
-  Future<bool> requestPasswordReset(String email) async {
-    return false;
-  }
+  Future<bool> requestPasswordReset(String email) async => false;
 
   @override
   Future<BasicLoginModel?> getLoggedInUser() async {
@@ -58,7 +60,7 @@ class LoginSharedPreferencesDataProvider
 
   @override
   Future<bool> logout() {
-    // TODO: implement logout
+    // TODO(Someone): implement logout
     throw UnimplementedError();
   }
 }

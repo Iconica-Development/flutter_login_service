@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Text(
                 'Login',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               TextFormField(
                 onSaved: (val) {
@@ -84,13 +84,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextButton(
                 onPressed: _forgotPassword,
-                child: Text(
+                child: const Text(
                   'request forgot password!',
                 ),
               ),
               ElevatedButton(
                 onPressed: _login,
-                child: Text('login'),
+                child: const Text('login'),
               ),
             ],
           ),

@@ -8,23 +8,21 @@ import 'package:flutter/material.dart';
 
 @immutable
 class BasicLoginModel {
-  final String id;
-  final String username;
-  final String hashedPassword;
-
   const BasicLoginModel({
     required this.id,
     required this.username,
     required this.hashedPassword,
   });
 
-  factory BasicLoginModel.fromJson(Map<String, dynamic> json) {
-    return BasicLoginModel(
-      id: json['id'],
-      username: json['username'],
-      hashedPassword: json['password'],
-    );
-  }
+  factory BasicLoginModel.fromJson(Map<String, dynamic> json) =>
+      BasicLoginModel(
+        id: json['id'],
+        username: json['username'],
+        hashedPassword: json['password'],
+      );
+  final String id;
+  final String username;
+  final String hashedPassword;
 
   Map<String, dynamic> toJson() => {
         'username': username,
@@ -32,12 +30,11 @@ class BasicLoginModel {
         'id': id,
       };
 
-  bool passwordMatches(String password) {
-    return _unsafeHash(password) == hashedPassword;
-  }
+  bool passwordMatches(String password) =>
+      _unsafeHash(password) == hashedPassword;
 
   String _unsafeHash(String password) {
     var bytes = base64Encode(password.codeUnits);
-    return bytes.toString();
+    return bytes;
   }
 }

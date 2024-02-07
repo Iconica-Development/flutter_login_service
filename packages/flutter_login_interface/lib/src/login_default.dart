@@ -11,8 +11,10 @@ class LoginDefaultDataProvider extends LoginInterface<String> {
 
   @override
   Future<LoginResponse<String>> loginWithEmailAndPassword(
-      EmailPasswordLogin login,
-      {Function(dynamic resolver)? onMFA}) async {
+    EmailPasswordLogin login, {
+    // ignore: avoid_annotating_with_dynamic
+    Function(dynamic resolver)? onMFA,
+  }) async {
     loggedIn = true;
     return LoginResponse(
       loginSuccessful: true,
@@ -21,9 +23,7 @@ class LoginDefaultDataProvider extends LoginInterface<String> {
   }
 
   @override
-  Future<bool> requestPasswordReset(String email) async {
-    return true;
-  }
+  Future<bool> requestPasswordReset(String email) async => true;
 
   @override
   Future<String?> getLoggedInUser() async {

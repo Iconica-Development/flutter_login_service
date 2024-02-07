@@ -3,7 +3,10 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_example/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_firebase_mfa/flutter_login_firebase_mfa.dart';
+import 'package:flutter_login_service/flutter_login_service.dart';
 
 void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -51,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         password,
         onMFA: (e) {},
       );
+      debugPrint('login result: $res');
     }
   }
 

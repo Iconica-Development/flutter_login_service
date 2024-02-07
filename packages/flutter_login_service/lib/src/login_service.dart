@@ -6,22 +6,23 @@ import 'package:flutter_login_interface/flutter_login_interface.dart';
 
 /// A Calculator.
 class LoginService<T> {
+  LoginService._(LoginInterface<T> data) : dataSource = data;
   static LoginService<T> forDatasource<T>({
     required LoginInterface<T> dataSource,
-  }) {
-    return LoginService<T>._(dataSource);
-  }
+  }) =>
+      LoginService<T>._(dataSource);
 
-  static LoginService<String> standard() {
-    return LoginService._(LoginDefaultDataProvider());
-  }
-
-  LoginService._(LoginInterface<T> data) : dataSource = data;
+  static LoginService<String> standard() =>
+      LoginService._(LoginDefaultDataProvider());
 
   LoginInterface<T> dataSource;
 
-  Future<T?> loginWithEmailAndPassword(String email, String password,
-      {Function(dynamic resolver)? onMFA}) async {
+  Future<T?> loginWithEmailAndPassword(
+    String email,
+    String password, {
+    // ignore: avoid_annotating_with_dynamic
+    Function(dynamic resolver)? onMFA,
+  }) async {
     var result = await dataSource.loginWithEmailAndPassword(
       EmailPasswordLogin(email: email, password: password),
       onMFA: onMFA,
@@ -32,15 +33,10 @@ class LoginService<T> {
     return null;
   }
 
-  Future<bool> requestChangePassword(String email) {
-    return dataSource.requestPasswordReset(email);
-  }
+  Future<bool> requestChangePassword(String email) =>
+      dataSource.requestPasswordReset(email);
 
-  Future<T?> getLoggedInUser() {
-    return dataSource.getLoggedInUser();
-  }
+  Future<T?> getLoggedInUser() => dataSource.getLoggedInUser();
 
-  Future<bool> logout() {
-    return dataSource.logout();
-  }
+  Future<bool> logout() => dataSource.logout();
 }

@@ -8,14 +8,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_login_interface/flutter_login_interface.dart';
 
 class FirebaseMFALogin extends LoginInterface<User> {
-  final FirebaseApp app;
-
   FirebaseMFALogin(this.app);
+  final FirebaseApp app;
 
   @override
   Future<LoginResponse<User>> loginWithEmailAndPassword(
-      EmailPasswordLogin login,
-      {Function(dynamic resolver)? onMFA}) async {
+    EmailPasswordLogin login, {
+    // ignore: avoid_annotating_with_dynamic
+    Function(dynamic resolver)? onMFA,
+  }) async {
     var auth = FirebaseAuth.instanceFor(app: app);
     try {
       var credential = await auth.signInWithEmailAndPassword(
@@ -27,7 +28,7 @@ class FirebaseMFALogin extends LoginInterface<User> {
         userObject: credential.user,
       );
     } on FirebaseAuthMultiFactorException catch (e) {
-      debugPrint("MFA required implement with [onMFA]");
+      debugPrint('MFA required implement with [onMFA]');
       onMFA?.call(e);
       return LoginResponse(loginSuccessful: false, userObject: null);
     } on FirebaseAuthException catch (_) {
@@ -41,7 +42,7 @@ class FirebaseMFALogin extends LoginInterface<User> {
     try {
       await auth.sendPasswordResetEmail(email: email);
       return true;
-    } catch (_) {
+    } on Exception catch (_) {
       return false;
     }
   }
@@ -58,7 +59,7 @@ class FirebaseMFALogin extends LoginInterface<User> {
     try {
       await auth.signOut();
       return true;
-    } catch (_) {
+    } on Exception catch (_) {
       return false;
     }
   }
