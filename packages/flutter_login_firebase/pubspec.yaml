@@ -1,10 +1,10 @@
 name: flutter_login_firebase
-description: A new Flutter package project.
-version: 1.0.0
+description: Firebase login service for Flutter
+version: 2.0.0
 publish_to: "none"
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=3.2.5 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -12,15 +12,18 @@ dependencies:
   firebase_core: ^2.1.1
   flutter:
     sdk: flutter
-  flutter_login_interface:
+  flutter_login_service:
     git:
-      url: https://github.com/Iconica-Development/flutter_login_service.git
-      path: packages/flutter_login_interface
-      ref: 1.0.0
+      url: https://github.com/Iconica-Development/flutter_login_service
+      path: packages/flutter_login_service
+      ref: 2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_iconica_analysis:
+    git:
+      url: https://github.com/Iconica-Development/flutter_iconica_analysis
+      ref: 6.0.0
 
 flutter:

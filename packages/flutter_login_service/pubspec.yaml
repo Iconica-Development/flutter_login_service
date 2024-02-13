@@ -1,6 +1,6 @@
 name: flutter_login_service
 description: A new Flutter package project.
-version: 1.0.0
+version: 2.0.0
 homepage: https://github.com/Iconica-Development
 publish_to: none
 
@@ -11,15 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_login_interface:
-    git:
-      url: https://github.com/Iconica-Development/flutter_login_service.git
-      path: packages/flutter_login_interface
-      ref: 1.0.0
+    
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_iconica_analysis:
+    git:
+      url: https://github.com/Iconica-Development/flutter_iconica_analysis
+      ref: 6.0.0
 
 flutter:

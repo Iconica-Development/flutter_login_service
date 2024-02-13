@@ -2,8 +2,11 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_example/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_firebase/flutter_login_firebase.dart';
 
 void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -36,8 +39,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _service =
-      LoginService.forDatasource(dataSource: FirebaseMFALogin(Firebase.app()));
+  final _service = FirebaseLoginService(
+    auth: FirebaseAuth.instance,
+  );
   final _formKey = GlobalKey<FormState>();
   var email = '';
   var password = '';
@@ -46,9 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
     var form = _formKey.currentState!;
     if (form.validate()) {
       form.save();
-      var res = await _service.loginWithEmailAndPassword(
+      await _service.loginWithEmailAndPassword(
         email,
         password,
+        context,
         onMFA: (e) {},
       );
     }
@@ -58,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var form = _formKey.currentState!;
     if (form.validate()) {
       form.save();
-      await _service.loginWithEmailAndPassword(email, password);
+      await _service.loginWithEmailAndPassword(email, password, context);
     }
   }
 
