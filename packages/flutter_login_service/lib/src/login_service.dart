@@ -2,45 +2,66 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter_login_interface/flutter_login_interface.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_login_service/src/models/models.dart';
 
-/// A Calculator.
-class LoginService<T> {
-  static LoginService<T> forDatasource<T>({
-    required LoginInterface<T> dataSource,
-  }) {
-    return LoginService<T>._(dataSource);
-  }
+/// A service to handle authentication.
+/// Implement this class to create a custom login service.
+abstract class LoginService {
+  /// [loginWithEmailAndPassword] is used to login a user with email and
+  /// password. If the login is successful, the response will contain
+  /// a [LoginResponse] with the user object. If the login is not
+  /// successful, the response will contain an [Error] object with
+  /// the error title and message.
+  /// Optionally, you can provide an [onMFA] function to handle
+  /// multi-factor authentication.
+  Future<LoginResponse> loginWithEmailAndPassword(
+    String email,
+    String password,
+    BuildContext context, {
+    // ignore: avoid_annotating_with_dynamic
+    Function(dynamic resolver)? onMFA,
+  });
 
-  static LoginService<String> standard() {
-    return LoginService._(LoginDefaultDataProvider());
-  }
+  /// [requestChangePassword] is used to request a password reset.
+  /// If the request is successful, the response will contain a
+  /// [RequestPasswordResponse] with [requestSuccesfull] set to true.
+  Future<RequestPasswordResponse> requestChangePassword(
+    String email,
+    BuildContext context,
+  );
 
-  LoginService._(LoginInterface<T> data) : dataSource = data;
+  /// [logout] is used to log out the currently logged in user.
+  Future<bool> logout(BuildContext context);
 
-  LoginInterface<T> dataSource;
+  /// [getLoggedInUser] is used to get the currently logged in user.
+  Future getLoggedInUser();
+}
 
-  Future<T?> loginWithEmailAndPassword(String email, String password,
-      {Function(dynamic resolver)? onMFA}) async {
-    var result = await dataSource.loginWithEmailAndPassword(
-      EmailPasswordLogin(email: email, password: password),
-      onMFA: onMFA,
-    );
-    if (result.loginSuccessful) {
-      return result.userObject;
-    }
-    return null;
-  }
+/// A local login service for testing purposes.
+class LocalLoginService implements LoginService {
+  @override
+  Future getLoggedInUser() async => true;
 
-  Future<bool> requestChangePassword(String email) {
-    return dataSource.requestPasswordReset(email);
-  }
+  @override
+  Future<LoginResponse> loginWithEmailAndPassword(
+    String email,
+    String password,
+    BuildContext context, {
+    // ignore: avoid_annotating_with_dynamic
+    Function(dynamic resolver)? onMFA,
+  }) async =>
+      const LoginResponse(loginSuccessful: true, userObject: null);
 
-  Future<T?> getLoggedInUser() {
-    return dataSource.getLoggedInUser();
-  }
+  @override
+  Future<bool> logout(BuildContext context) async => true;
 
-  Future<bool> logout() {
-    return dataSource.logout();
-  }
+  @override
+  Future<RequestPasswordResponse> requestChangePassword(
+    String email,
+    BuildContext context,
+  ) async =>
+      const RequestPasswordResponse(
+        requestSuccesfull: true,
+      );
 }
