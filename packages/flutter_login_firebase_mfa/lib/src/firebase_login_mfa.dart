@@ -9,7 +9,7 @@ import 'package:flutter_login_service/flutter_login_service.dart';
 /// A service to handle authentication with Firebase.
 /// Takes an instance of [FirebaseAuth] and an
 /// optional [LoginServiceTranslations]
-class FirebaseMFALoginService implements LoginService {
+class FirebaseMFALoginService implements LoginServiceInterface {
   FirebaseMFALoginService({
     required this.auth,
     this.translationsService = const LoginServiceTranslations.empty(),

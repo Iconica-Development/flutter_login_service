@@ -1,3 +1,7 @@
+## 3.0.0
+
+* Renamed the login interface "LoginService" to "LoginServiceInterface".
+
 ## 2.0.0
 
 * Removed the `LoginServiceInterface` class.

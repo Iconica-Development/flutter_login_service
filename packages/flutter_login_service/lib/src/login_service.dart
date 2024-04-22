@@ -7,7 +7,7 @@ import 'package:flutter_login_service/src/models/models.dart';
 
 /// A service to handle authentication.
 /// Implement this class to create a custom login service.
-abstract class LoginService {
+abstract class LoginServiceInterface {
   /// [loginWithEmailAndPassword] is used to login a user with email and
   /// password. If the login is successful, the response will contain
   /// a [LoginResponse] with the user object. If the login is not
@@ -39,7 +39,7 @@ abstract class LoginService {
 }
 
 /// A local login service for testing purposes.
-class LocalLoginService implements LoginService {
+class LocalLoginService implements LoginServiceInterface {
   @override
   Future getLoggedInUser() async => true;
 
