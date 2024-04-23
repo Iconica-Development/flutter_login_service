@@ -1,6 +1,6 @@
 name: flutter_login_firebase
 description: Firebase login service for Flutter
-version: 2.0.0
+version: 3.0.0
 publish_to: "none"
 
 environment:
@@ -16,7 +16,7 @@ dependencies:
     git:
       url: https://github.com/Iconica-Development/flutter_login_service
       path: packages/flutter_login_service
-      ref: 2.0.0
+      ref: 3.0.0
 
 dev_dependencies:
   flutter_test:
