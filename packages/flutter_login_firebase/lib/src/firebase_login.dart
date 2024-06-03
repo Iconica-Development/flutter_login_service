@@ -32,6 +32,10 @@ class FirebaseLoginService implements LoginServiceInterface {
   @override
   Future<User?> getLoggedInUser() async => auth.authStateChanges().first;
 
+  /// [isLoggedIn] is use to check to see if current user is logged in.
+  @override
+  Future<bool> isLoggedIn() async => auth.currentUser != null;
+
   /// Log in with email and password.
   /// Returns a [LoginResponse] with the user object if the login was
   /// successful. If the login was not successful, the response will
