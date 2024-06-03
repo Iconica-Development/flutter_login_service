@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import 'package:flutter/material.dart';
+import 'package:flutter_login_service/flutter_login_service.dart';
 import 'package:flutter_login_service/src/models/models.dart';
 
 /// A service to handle authentication.
@@ -34,14 +35,25 @@ abstract class LoginServiceInterface {
   /// [logout] is used to log out the currently logged in user.
   Future<bool> logout(BuildContext context);
 
+  /// [isLoggedIn] is use to check to see if current user is logged in.
+  Future<bool> isLoggedIn();
+
   /// [getLoggedInUser] is used to get the currently logged in user.
   Future getLoggedInUser();
 }
 
 /// A local login service for testing purposes.
 class LocalLoginService implements LoginServiceInterface {
+  factory LocalLoginService() => _instance;
+
+  bool loggedIn = false;
+  dynamic userObject;
+
+  // singleton reference to keep state
+  static final LocalLoginService _instance = LocalLoginService();
+
   @override
-  Future getLoggedInUser() async => true;
+  Future getLoggedInUser() async => userObject;
 
   @override
   Future<LoginResponse> loginWithEmailAndPassword(
@@ -50,11 +62,21 @@ class LocalLoginService implements LoginServiceInterface {
     BuildContext context, {
     // ignore: avoid_annotating_with_dynamic
     Function(dynamic resolver)? onMFA,
-  }) async =>
-      const LoginResponse(loginSuccessful: true, userObject: null);
+  }) async {
+    loggedIn = true;
+    userObject = {'name': 'John Doe'};
+    return LoginResponse(
+      loginSuccessful: loggedIn,
+      userObject: userObject,
+    );
+  }
 
   @override
-  Future<bool> logout(BuildContext context) async => true;
+  Future<bool> logout(BuildContext context) async {
+    loggedIn = false;
+    userObject = null;
+    return true;
+  }
 
   @override
   Future<RequestPasswordResponse> requestChangePassword(
@@ -64,4 +86,7 @@ class LocalLoginService implements LoginServiceInterface {
       const RequestPasswordResponse(
         requestSuccesfull: true,
       );
+
+  @override
+  Future<bool> isLoggedIn() async => loggedIn;
 }

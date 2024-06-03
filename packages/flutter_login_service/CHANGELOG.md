@@ -1,3 +1,7 @@
+## 4.0.0
+
+* Made the localLoginService statefull.
+
 ## 3.0.0
 
 * Renamed the login interface "LoginService" to "LoginServiceInterface".
