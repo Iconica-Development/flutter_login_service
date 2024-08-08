@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter_test/flutter_test.dart';
+import "package:flutter_test/flutter_test.dart";
 
 void main() {
-  test('description', () {
+  test("description", () {
     expect(true, isTrue);
   });
 }

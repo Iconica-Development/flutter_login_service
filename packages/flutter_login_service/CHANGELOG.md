@@ -1,3 +1,9 @@
+## 5.0.0
+
+* Added translations to `LoginServiceTranslations`.
+* ready the package for deployment to the pub server.
+* Upgraded `flutter_iconica_analysis` to 7.0.0
+
 ## 4.0.0
 
 * Made the localLoginService statefull.

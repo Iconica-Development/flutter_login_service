@@ -4,4 +4,4 @@
 ///
 library flutter_login_firebase_mfa;
 
-export 'src/firebase_login_mfa.dart';
+export "src/firebase_login_mfa.dart";

@@ -1,7 +1,7 @@
 name: flutter_login_firebase
 description: Firebase login service for Flutter
-version: 4.0.0
-publish_to: "none"
+version: 5.0.0
+publish_to: https://forgejo.internal.iconica.nl/api/packages/internal/pub
 
 environment:
   sdk: ">=3.2.5 <4.0.0"
@@ -13,10 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_login_service:
-    git:
-      url: https://github.com/Iconica-Development/flutter_login_service
-      path: packages/flutter_login_service
-      ref: 4.0.0
+    hosted: https://forgejo.internal.iconica.nl/api/packages/internal/pub
+    version: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +22,6 @@ dev_dependencies:
   flutter_iconica_analysis:
     git:
       url: https://github.com/Iconica-Development/flutter_iconica_analysis
-      ref: 6.0.0
+      ref: 7.0.0
 
 flutter:

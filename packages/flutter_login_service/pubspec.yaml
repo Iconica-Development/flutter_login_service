@@ -1,8 +1,8 @@
 name: flutter_login_service
 description: A new Flutter package project.
-version: 4.0.0
+version: 5.0.0
 homepage: https://github.com/Iconica-Development
-publish_to: none
+publish_to: https://forgejo.internal.iconica.nl/api/packages/internal/pub
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -19,6 +19,6 @@ dev_dependencies:
   flutter_iconica_analysis:
     git:
       url: https://github.com/Iconica-Development/flutter_iconica_analysis
-      ref: 6.0.0
+      ref: 7.0.0
 
 flutter:
