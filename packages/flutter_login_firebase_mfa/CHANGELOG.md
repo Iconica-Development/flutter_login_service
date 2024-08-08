@@ -1,3 +1,8 @@
+## 5.0.0
+
+* ready the package for deployment to the pub server.
+* Upgraded `flutter_iconica_analysis` to 7.0.0
+
 ## 4.0.0
 
 * Implement isLoggedIn() method from the updated login service to check if the user is logged in.

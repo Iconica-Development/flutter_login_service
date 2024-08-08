@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_login_service/flutter_login_service.dart';
+import "package:firebase_auth/firebase_auth.dart";
+import "package:flutter/material.dart";
+import "package:flutter_login_service/flutter_login_service.dart";
 
 /// A service to handle authentication with Firebase.
 /// Takes an instance of [FirebaseAuth] and an
@@ -60,12 +60,12 @@ class FirebaseMFALoginService implements LoginServiceInterface {
         userObject: credential.user,
       );
     } on FirebaseAuthMultiFactorException catch (e) {
-      debugPrint('[onMFA] is required for this login attempt.');
+      debugPrint("[onMFA] is required for this login attempt.");
       onMFA?.call(e);
       return const LoginResponse(loginSuccessful: false, userObject: null);
     } on FirebaseAuthException catch (e) {
       loginError = switch (e.code) {
-        'user-disabled' => LoginResponse(
+        "user-disabled" => LoginResponse(
             userObject: null,
             loginSuccessful: false,
             loginError: Error(
@@ -73,7 +73,7 @@ class FirebaseMFALoginService implements LoginServiceInterface {
               message: translationsService.userDisabledMessage,
             ),
           ),
-        'wrong-password' => LoginResponse(
+        "wrong-password" => LoginResponse(
             userObject: null,
             loginSuccessful: false,
             loginError: Error(
@@ -81,7 +81,7 @@ class FirebaseMFALoginService implements LoginServiceInterface {
               message: translationsService.wrongPasswordMessage,
             ),
           ),
-        'too-many-requests' => LoginResponse(
+        "too-many-requests" => LoginResponse(
             userObject: null,
             loginSuccessful: false,
             loginError: Error(
@@ -89,7 +89,7 @@ class FirebaseMFALoginService implements LoginServiceInterface {
               message: translationsService.tooManyRequestsMessage,
             ),
           ),
-        'invalid-credential' => LoginResponse(
+        "invalid-credential" => LoginResponse(
             userObject: null,
             loginSuccessful: false,
             loginError: Error(
@@ -137,14 +137,14 @@ class FirebaseMFALoginService implements LoginServiceInterface {
       return const RequestPasswordResponse(requestSuccesfull: true);
     } on FirebaseAuthException catch (e) {
       requestPasswordError = switch (e.code) {
-        'invalid-email' => RequestPasswordResponse(
+        "invalid-email" => RequestPasswordResponse(
             requestSuccesfull: false,
             requestPasswordError: Error(
               title: translationsService.changePasswordInvalidEmailTitle,
               message: translationsService.changePasswordInvalidEmailMessage,
             ),
           ),
-        'user-not-found' => RequestPasswordResponse(
+        "user-not-found" => RequestPasswordResponse(
             requestSuccesfull: false,
             requestPasswordError: Error(
               title: translationsService.changePasswordUserNotFoundTitle,

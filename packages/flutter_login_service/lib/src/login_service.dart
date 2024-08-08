@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
-import 'package:flutter_login_service/flutter_login_service.dart';
-import 'package:flutter_login_service/src/models/models.dart';
+import "package:flutter/material.dart";
+import "package:flutter_login_service/flutter_login_service.dart";
+import "package:flutter_login_service/src/models/models.dart";
 
 /// A service to handle authentication.
 /// Implement this class to create a custom login service.
@@ -64,7 +64,7 @@ class LocalLoginService implements LoginServiceInterface {
     Function(dynamic resolver)? onMFA,
   }) async {
     loggedIn = true;
-    userObject = {'name': 'John Doe'};
+    userObject = {"name": "John Doe"};
     return LoginResponse(
       loginSuccessful: loggedIn,
       userObject: userObject,
