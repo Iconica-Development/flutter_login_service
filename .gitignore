@@ -8,3 +8,6 @@ melos_flutter_login_service.iml
 .flutter-plugins-dependencies
 pubspec.lock
 pubspec_overrides.yaml
+
+# FVM Version Cache
+.fvm/
